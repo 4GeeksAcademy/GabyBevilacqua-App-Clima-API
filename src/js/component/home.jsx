@@ -3,9 +3,9 @@ import { faSun, faCloudSun, faCloud, faCloudRain } from "@fortawesome/free-solid
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import nubes01 from "../../../src/img/nubes03.mp4";
 
-const URL_BASE = "https://api.openweathermap.org/data/2.5/weather?appid=3ad0e01e3ea17a3cf351f4d99f49ffbc&units=metric&lang=es&"
+const URL_BASE = "https://api.openweathermap.org/data/2.5/weather?appid=xxxxxxxxaquilakeyxxxxxxxxx&units=metric&lang=es&"
 
-// key  d90906b8f92814f0140f64fea0437fb3
+// key  
 // https://api.openweathermap.org/data/2.5/weather?q={city name},{country code}&appid={API key}
 
 const Home = () => {
@@ -14,7 +14,8 @@ const Home = () => {
 		country: "",
 		humidity: "",
 		feels_like: "",
-		weather: ""
+		weather: "",
+		description:""
 	})
 
 	const weatherIcons = {
@@ -54,21 +55,21 @@ const Home = () => {
 
 	return (
 		<div className="video-container">
-			<video 
-			className="background-video" 
-			autoPlay 
-			loop 
-			muted
+			<video
+				className="background-video"
+				autoPlay
+				loop
+				muted
 			>
 				<source src={nubes01} type="video/mp4" />
-			
+
 			</video>
-			<div className="container">
-				<div className="row">
-					<div className="col-12">
-						<h1 className="text-center">Aplicacion del clima</h1>
+			<div className="container" id="contenedor1">
+				<div className="row container" id="contenedor2">
+					<div className="col-12 border border-light">
+						<h1 className="text-center">Aplicación del clima</h1>
 					</div>
-					<div className="col-12 col-md-6 border border-secondary p-3">
+					<div className="col-12 col-md-6 border border-light p-3">
 						<form
 							onSubmit={handleSubmit}
 						>
@@ -84,35 +85,38 @@ const Home = () => {
 								/>
 							</div>
 							<div className="form-group mt-3">
-								<label htmlFor="country"><strong>Pais:</strong></label>
+								<label htmlFor="country"><strong>País:</strong></label>
 								<select
 									className="form-control"
 									id="country"
 									name="country"
 									onChange={handleChange}
 								>
-									<option value="">Selecciona un pais</option>
-									<option value="ES">España</option>
-									<option value="FR">Francia</option>
+									<option value="">Selecciona un país</option>
+									<option value="DEU">Alemania</option>
+									<option value="AUS">Australia</option>
+									<option value="ESP">España</option>
+									<option value="FRA">Francia</option>
 									<option value="IT">Italia</option>
 									<option value="MX">Mexico</option>
+									<option value="GBR">Reino Unido</option>
 									<option value="US">USA</option>
 									<option value="VE">Venezuela</option>
 								</select>
 							</div>
 							<button
-								className="btn btn-secondary w-100 mt-3"
-							>Consultar clima</button>
+								className="w-100 mt-3"
+							><span className="text">Consultar clima</span></button>
 						</form>
 					</div>
 					<div
-						className="col-12 col-md-6 d-flex justify-content-center align-items-center border border-secondary p-3">  {/* si no colocamos el ternario abajo la app sin datos dice NAN */}
+						className="col-12 col-md-6 d-flex justify-content-center align-items-center border border-light p-3">  {/* si no colocamos el ternario abajo la app sin datos dice NAN */}
 						{
 							!weather ? "Aún no has consultado el clima" :
 								weather.cod === "404" ? "Verifica si la ciudad corresponde con el país" :
 									<>
 										<div>
-											<p className="p-4 display-5 ">
+											<p className="p-5 display-5 ">
 												<strong>{Math.ceil(weather?.main?.temp)}c°</strong>  {/* math.ceil es para redondear hacia arriba un numero */}
 											</p>
 										</div>
